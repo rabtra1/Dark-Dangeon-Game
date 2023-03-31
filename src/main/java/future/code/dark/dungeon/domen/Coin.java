@@ -8,6 +8,4 @@ public class Coin extends GameObject{
         super(xPosition, yPosition, Configuration.COIN_SPRITE);
     }
 
-
-
 }

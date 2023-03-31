@@ -8,6 +8,4 @@ public class Exit extends GameObject{
         super(xPosition, yPosition, EXIT_SPRITE);
     }
 
-
-
 }

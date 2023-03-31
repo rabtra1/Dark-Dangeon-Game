@@ -20,5 +20,4 @@ public interface Configuration {
     String EXIT_SPRITE = "src/main/resources/assets/land/out.png";
     String COIN_SPRITE = "src/main/resources/assets/land/collectible.png";
 
-    String VICTORY_SPRITE = "src/main/resources/assets/victory.jpg";
 }

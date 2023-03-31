@@ -1,7 +1,14 @@
 package future.code.dark.dungeon.service;
 
+import future.code.dark.dungeon.GameFrame;
 import future.code.dark.dungeon.config.Configuration;
-import future.code.dark.dungeon.domen.*;
+import future.code.dark.dungeon.domen.Coin;
+import future.code.dark.dungeon.domen.DynamicObject;
+import future.code.dark.dungeon.domen.Enemy;
+import future.code.dark.dungeon.domen.Exit;
+import future.code.dark.dungeon.domen.GameObject;
+import future.code.dark.dungeon.domen.Map;
+import future.code.dark.dungeon.domen.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,30 +18,35 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import static future.code.dark.dungeon.config.Configuration.*;
+import static future.code.dark.dungeon.config.Configuration.COIN_CHARACTER;
+import static future.code.dark.dungeon.config.Configuration.ENEMIES_ACTIVE;
+import static future.code.dark.dungeon.config.Configuration.ENEMY_CHARACTER;
+import static future.code.dark.dungeon.config.Configuration.EXIT_CHARACTER;
+import static future.code.dark.dungeon.config.Configuration.PLAYER_CHARACTER;
 
-public class GameMaster{
+public class GameMaster {
 
     private static GameMaster instance;
 
-    private static final Image victoryImage = new ImageIcon(VICTORY_SPRITE).getImage();
+    public static int scoreCoin;
 
     private final Map map;
-    public final List<GameObject> gameObjects;
 
-    public int countCoins = 0;
+    public static boolean status_game;
+
+    public static final Image vic_img = new ImageIcon("src/main/resources/assets/victory.jpg").getImage();
+
+    public List<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
+    private final List<GameObject> gameObjects;
 
     public static synchronized GameMaster getInstance() {
         if (instance == null) {
             instance = new GameMaster();
         }
         return instance;
-    }
-
-
-
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
     }
 
     private GameMaster() {
@@ -72,11 +84,10 @@ public class GameMaster{
         getPlayer().render(graphics);
         graphics.setColor(Color.WHITE);
         graphics.drawString(getPlayer().toString(), 10, 20);
+        graphics.drawString("Count: " + GameMaster.scoreCoin + "/9", 150, 20 );
 
-
+        if (status_game) graphics.drawImage(vic_img, 0, 0, null);
     }
-
-
 
     public Player getPlayer() {
         return (Player) gameObjects.stream()
@@ -101,6 +112,5 @@ public class GameMaster{
     public Map getMap() {
         return map;
     }
-
 
 }

@@ -5,7 +5,6 @@ import future.code.dark.dungeon.util.FileUtils;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.stream.Collector;
@@ -26,7 +25,6 @@ public class Map {
     private final char[][] map;
 
     public Map(String mapPath) throws FileNotFoundException {
-
         List<String> lines = FileUtils.readFile(mapPath);
 
         if (!validate(lines)) {
